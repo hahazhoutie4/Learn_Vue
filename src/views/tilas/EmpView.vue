@@ -3,10 +3,10 @@
     <el-container style="height: 700px">
       <!-- head -->
       <el-header style="text-align: left; font-weight: bold"
-        >记录学习辅助学习系统</el-header
-      >
+        >记录学习辅助学习系统</el-header>
       <el-container>
         <!-- aside -->
+         <!-- Git test-->
         <el-aside width="200px">
           <el-menu :default-openeds="['1']" @select="selc">
             <el-submenu index="1">
