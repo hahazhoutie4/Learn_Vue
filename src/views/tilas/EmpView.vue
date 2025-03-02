@@ -11,8 +11,7 @@
           <el-menu :default-openeds="['1']" @select="selc">
             <el-submenu index="1">
               <template slot="title">
-                ><i class="el-icon-message"></i>查询</template
-              >
+                <i class="el-icon-message"></i>查询</template>
               <!-- <el-menu-item-group title=""> -->
               <!-- <template slot="title">分组一</template> -->
               <el-menu-item index="1-1">选项1</el-menu-item>
