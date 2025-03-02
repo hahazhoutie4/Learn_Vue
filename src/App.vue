@@ -7,6 +7,7 @@
     <!-- <router-view/> -->
     <!-- <table-view></table-view> -->
     <emp-view/>
+    <video src="http://localhost:8070" controls width="500px" height="500px"></video>
   </div>
 </template>
 <script>
