@@ -1,20 +1,26 @@
 <template>
   <div id="app">
-    <!-- <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-    </nav> -->
-    <!-- <router-view/> -->
-    <!-- <table-view></table-view> -->
     <emp-view/>
-    <video src="http://localhost:8070" controls width="500px" height="500px"></video>
   </div>
 </template>
 <script>
-//import TableView from './views/TableView.vue';
-import EmpView from './views/tilas/EmpView.vue';
+import EmpView from "@/views/engineer/EmpView.vue";
+import Axios  from 'axios';
+import qs from  'qs';
 export default {
-  components: {  EmpView },
+  components: {EmpView },
+  data(){
+    return{
+    }
+  },
+  mounted() {
+    Axios.post("http://localhost:8090/api/login",qs.stringify({userName:"zhoutong",password:"jintian123"}),{headers:{
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }}).then(res=>{
+      let token = res.data.data;
+      localStorage.setItem("token",token);
+    })
+  }
 }
 </script>
 
