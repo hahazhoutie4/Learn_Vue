@@ -104,9 +104,10 @@ export default {
     submit() {
       console.log('submit!');
       console.log(localStorage.getItem("token"));
-      Axios.get(href+"/api/engineer/labors",{headers:{"token":localStorage.getItem("token")}}).
+      Axios.get(href+"/api/engineer/labors/findByConditions?"+"costName="+this.cost.name+"&costSig="+this.cost.sig,{headers:{"token":localStorage.getItem("token")}}).
       then(res=>{
         console.log(res.data);
+        this.tableData = res.data.data;
       }).catch(err=>{
         console.log(err);
       })

@@ -56,7 +56,7 @@ export function materialFindByPage(vueObject,nowPage,pageSize){
 
 export function laborFindAll(vueObject){
     vueObject.loading = true;
-    Axios.get("http://localhost:8090/api/engineer/labors",{headers:{"token":localStorage.getItem("token")}}).then(res=>{
+    Axios.get(href+"/api/engineer/labors",{headers:{"token":localStorage.getItem("token")}}).then(res=>{
         console.log("mounted");
         console.log(res.data);
         vueObject.tableData = res.data.data;
@@ -67,7 +67,7 @@ export function laborFindAll(vueObject){
 
 export function materialFindAll(vueObject){
     vueObject.loading = true;
-    Axios.get("http://localhost:8090/api/engineer/materials",
+    Axios.get(href+"/api/engineer/materials",
         {headers:{"token":localStorage.getItem("token")}}).then(res=>{
             console.log("mounted"+ res.data);
         vueObject.materialData = res.data.data;

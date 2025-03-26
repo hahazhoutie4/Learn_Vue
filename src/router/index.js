@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-// import HomeView from '../views/HomeView.vue'
 import LaborView from "@/views/engineer/LaborView.vue";
-
+import FileView from "@/views/engineer/FileView.vue";
+import MaterialView from "@/views/engineer/MaterialView.vue";
+import ProServiceView from "@/views/engineer/ProServiceView.vue";
 Vue.use(VueRouter)
 
 const routes = [
@@ -14,18 +15,23 @@ const routes = [
   {
     path: '/labor',
     name: 'labor',
-    component: () => import(/* webpackChunkName: "about" */ '@/views/engineer/LaborView.vue')
+    component: LaborView
   },
   {
     path: '/proService',
     name: 'proService',
-    component: () => import(/* webpackChunkName: "about" */ '@/views/engineer/ProServiceView.vue')
+    component: ProServiceView
   },
   {
     path: '/material',
     name: 'material',
-    component: () => import(/* webpackChunkName: "about" */ '@/views/engineer/MaterialView.vue')
+    component: MaterialView
   },
+  {
+    path: '/fileUpload',
+    name: 'fileUpload',
+    component: FileView
+  }
 ]
 
 const router = new VueRouter({
