@@ -3,10 +3,10 @@
   <div>
     <el-form :inline="true" :model="cost" class="demo-form-inline">
       <el-form-item label="名称">
-        <el-input v-model="cost.name" placeholder="输入模糊名称"></el-input>
+        <el-input v-model="cost.name" placeholder="输入名称"></el-input>
       </el-form-item>
       <el-form-item label="规格/特征">
-        <el-input v-model="cost.sig" placeholder="特征"></el-input>
+        <el-input v-model="cost.sig" placeholder="输入特征"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submit">查询成本数据</el-button>
@@ -15,8 +15,8 @@
 
     <!-- 表格 -->
     <el-table
-        :data="proservicedata"
-        border=true
+        v-loading="loading"
+        :data="proServiceData"
         style="width: 100%;height: auto">
       <el-table-column
           prop="id"
@@ -77,10 +77,12 @@
 
 <script>
 import Axios from 'axios';
+import {proServiceFindAll, proServiceFindByPage} from '@/views/engineer/async';
+var href = window.location.origin;
 export default {
   data() {
     return {
-      proservicedata:[{
+      proServiceData:[{
         id: 1,
         cost_name: 'cost_name',
         cost_sig: 'cost_sig',
@@ -93,30 +95,29 @@ export default {
         name: '',
         sig: ''
       },
-      total: 2000,
+      total: 20,
+      loading : false
     }
   },
   methods: {
     submit() {
       console.log('submit!');
       console.log(localStorage.getItem("token"));
-      Axios.get("http://localhost:8090/api/engineer/proServices",{headers:{"token":localStorage.getItem("token")}}).
+      Axios.get(href+"/api/engineer/proServices/findByConditions?"+"costName="+this.cost.name+"&costSig="+this.cost.sig,{headers:{"token":localStorage.getItem("token")}}).
       then(res=>{
-        console.log(res.data);
+        this.proServiceData = res.data.data;
+        console.log("查询数据返回"+res.data);
       }).catch(err=>{
         console.log(err);
       })
     },
     handleCurrentChange(e){
+      proServiceFindByPage(this,e,10);
       console.log(e);
     }
   },
   mounted() {
-    Axios.get("http://localhost:8090/api/engineer/proServices",{headers:{"token":localStorage.getItem("token")}}).then(res=>{
-      console.log("mounted");
-      console.log(res.data.data);
-      this.proservicedata = res.data.data;
-    })
+    proServiceFindAll(this);
   }
 }
 </script>

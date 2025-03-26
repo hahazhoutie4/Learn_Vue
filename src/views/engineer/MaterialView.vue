@@ -3,10 +3,10 @@
   <div>
     <el-form :inline="true" :model="cost" class="demo-form-inline">
       <el-form-item label="名称">
-        <el-input v-model="cost.name" placeholder="输入模糊名称"></el-input>
+        <el-input v-model="cost.name" placeholder="输入名称"></el-input>
       </el-form-item>
       <el-form-item label="规格/特征">
-        <el-input v-model="cost.sig" placeholder="特征"></el-input>
+        <el-input v-model="cost.sig" placeholder="输入特征"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submit">查询成本数据</el-button>
@@ -15,8 +15,8 @@
 
     <!-- 表格 -->
     <el-table
-        :data="tableData"
-        border=true
+        v-loading="loading"
+        :data="materialData"
         style="width: 100%;height: auto">
       <el-table-column
           prop="id"
@@ -67,7 +67,6 @@
     <!-- 分页 -->
     <el-pagination
         :page-size="10"
-        :pager-count="page_count"
         layout="prev, pager, next"
         :total="total"
         @current-change="handleCurrentChange">
@@ -75,7 +74,9 @@
   </div>
 </template>
 <script>
-import Axios from 'axios'
+import Axios from 'axios';
+import {materialFindAll, materialFindByPage} from "@/views/engineer/async";
+var href = window.location.origin;
 export default {
   name:"MaterialView",
   data() {
@@ -84,21 +85,25 @@ export default {
         name: '',
         sig: ''
       },
-      tableData: [],
-      total: 200,
-      page_count: 10
+      materialData: [],
+      total: 20,
+      loading : false
     }
   },
   methods: {
     handleCurrentChange(e){
+      materialFindByPage(this,e,10);
       console.log(e);
     },
+    submit(){
+      Axios.get(href+"/api/engineer/materials/findByConditions?"+"costName="+this.cost.name+"&costSig="+this.cost.sig,{headers:{"token":localStorage.getItem("token")}}).then(res=>{
+      this.materialData = res.data.data;
+      })
+    }
 
   },
   mounted() {
-    Axios.get("http://localhost:8090/api/engineer/materials",{headers:{"token":localStorage.getItem("token")}}).then(res=>{
-    this.tableData = res.data.data;
-    })
+    materialFindAll(this);
   }
 }
 
