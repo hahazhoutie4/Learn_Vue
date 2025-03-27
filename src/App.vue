@@ -1,14 +1,12 @@
 <template>
   <div id="app">
-    <emp-view/>
+    <router-view/>
   </div>
 </template>
 <script>
-import EmpView from "@/views/engineer/EmpView.vue";
 import Axios  from 'axios';
 import qs from  'qs';
 export default {
-  components: {EmpView },
   data(){
     return{
     }
@@ -43,5 +41,16 @@ nav a {
 }
 nav a.router-link-exact-active {
   color: #42b983;
+}
+div#app{
+  width: 100%;
+  height: 695px;
+  background-image: url('@/assets/bg.jpg');
+  background-size: cover;
+  background-color: rgba(0,0,0,1);
+  background-repeat: no-repeat;
+}
+body{
+  margin: 0px;
 }
 </style>

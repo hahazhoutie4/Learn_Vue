@@ -9,7 +9,6 @@
     <el-button size="small" type="primary" >点击上传</el-button>
     <div slot="tip" class="el-upload__tip">只能按照格式文件上传</div>
   </el-upload>
-
 </template>
 <script>
 export default {

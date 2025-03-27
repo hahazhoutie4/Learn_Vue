@@ -1,12 +1,19 @@
 import Axios from 'axios'
 import qs from "qs";
 import Vue from "vue";
-export function login(){
-    Axios.post(Vue.prototype.originhref+"/api/login",qs.stringify({userName:"zhoutong",password:"jintian123"}),{headers:{
+export function login(vueObject , userName,password){
+    vueObject.loading = true;
+    Axios.post(Vue.prototype.originhref+"/api/login",qs.stringify({userName:userName,password:password}),{headers:{
             'Content-Type': 'application/x-www-form-urlencoded'
         }}).then(res=>{
-        let token = res.data.data;
-        localStorage.setItem("token",token);
+        vueObject.loading = false;
+        let data  = res.data;
+        if(data.code == 0){
+            vueObject.$alert(data.data);
+        }else if(data.code ==1){
+            localStorage.setItem("token",data.data);
+            vueObject.$router.push("/emp");
+        }
     })
 }
 export function proServiceFindAll(vueObject){
@@ -75,3 +82,4 @@ export function materialFindAll(vueObject){
         vueObject.loading = false;
     })
 }
+
