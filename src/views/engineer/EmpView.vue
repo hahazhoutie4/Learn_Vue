@@ -11,7 +11,7 @@
 
           <el-col :span="10">
             <div class="grid-content bg-purple">
-            <el-menu v-show="isNotMobile" :default-active="['1']" class="el-menu-demo" mode="horizontal" style="background-color: rgba(1,1,1,0);">
+            <el-menu v-show="isNotMobile" class="el-menu-demo" mode="horizontal" style="background-color: rgba(1,1,1,0);">
               <el-submenu index="1">
                 <template slot="title">
                   <i class="el-icon-message"></i>成本查询
@@ -25,7 +25,7 @@
           </el-col>
 
           <el-col :span="10">
-          <el-menu v-show="isNotMobile" :default-active="['1']" class="el-menu-demo" mode="horizontal" style="background-color: rgba(1,1,1,0);">
+          <el-menu v-show="isNotMobile" class="el-menu-demo" mode="horizontal" style="background-color: rgba(1,1,1,0);">
             <div class="grid-content bg-purple">
               <el-submenu index="1">
                 <template slot="title">
@@ -52,7 +52,7 @@
             </el-submenu>
             <el-submenu index="2">
               <template slot="title">
-                <i class="el-icon-notebook-2"></i>文件服务</template>
+                <i class="el-icon-notebook-2"></i>上传模板文件</template>
               <el-menu-item index="2-1"><router-link to="/fileUpload" style="text-decoration: none;color: inherit">上传成本数据</router-link></el-menu-item>
             </el-submenu>
           </el-menu>

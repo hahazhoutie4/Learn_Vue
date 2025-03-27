@@ -76,7 +76,6 @@
 <script>
 import Axios from 'axios';
 import {materialFindAll, materialFindByPage} from "@/views/engineer/async";
-var href = window.location.origin;
 export default {
   name:"MaterialView",
   data() {
@@ -96,7 +95,7 @@ export default {
       console.log(e);
     },
     submit(){
-      Axios.get(href+"/api/engineer/materials/findByConditions?"+"costName="+this.cost.name+"&costSig="+this.cost.sig,{headers:{"token":localStorage.getItem("token")}}).then(res=>{
+      Axios.get(this.originhref+"/api/engineer/materials/findByConditions?"+"costName="+this.cost.name+"&costSig="+this.cost.sig,{headers:{"token":localStorage.getItem("token")}}).then(res=>{
       this.materialData = res.data.data;
       })
     }

@@ -78,8 +78,7 @@
 <script>
 import Axios from 'axios';
 import {laborFindByPage} from "@/views/engineer/async";
-import {laborFindAll,login} from "@/views/engineer/async";
-var href = window.location.origin;
+import {laborFindAll} from "@/views/engineer/async";
 export default {
   data() {
       return {
@@ -104,7 +103,7 @@ export default {
     submit() {
       console.log('submit!');
       console.log(localStorage.getItem("token"));
-      Axios.get(href+"/api/engineer/labors/findByConditions?"+"costName="+this.cost.name+"&costSig="+this.cost.sig,{headers:{"token":localStorage.getItem("token")}}).
+      Axios.get(this.originhref+"/api/engineer/labors/findByConditions?"+"costName="+this.cost.name+"&costSig="+this.cost.sig,{headers:{"token":localStorage.getItem("token")}}).
       then(res=>{
         console.log(res.data);
         this.tableData = res.data.data;
@@ -118,7 +117,7 @@ export default {
     }
   },
   mounted() {
-    login();
+  //  login();
     laborFindAll(this);
   }
 }

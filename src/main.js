@@ -12,6 +12,8 @@ Vue.use(ElementUI)
 Vue.use(Table)
 Vue.use(TableColumn)
 
+Vue.prototype.originhref = window.location.origin
+
 new Vue({
   router,
   render: h => h(App)

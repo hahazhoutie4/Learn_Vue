@@ -7,7 +7,6 @@
 import EmpView from "@/views/engineer/EmpView.vue";
 import Axios  from 'axios';
 import qs from  'qs';
-var href= window.location.origin;
 export default {
   components: {EmpView },
   data(){
@@ -15,7 +14,9 @@ export default {
     }
   },
   mounted() {
-    Axios.post(href+"api/login",qs.stringify({userName:"zhoutong",password:"jintian123"}),{headers:{
+    console.log("App.vue mounted");
+    console.log(this.originhref);
+    Axios.post(this.originhref+"/api/login",qs.stringify({userName:"zhoutong",password:"jintian123"}),{headers:{
         'Content-Type': 'application/x-www-form-urlencoded'
       }}).then(res=>{
       let token = res.data.data;

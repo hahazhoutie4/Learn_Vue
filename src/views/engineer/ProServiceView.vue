@@ -78,7 +78,6 @@
 <script>
 import Axios from 'axios';
 import {proServiceFindAll, proServiceFindByPage} from '@/views/engineer/async';
-var href = window.location.origin;
 export default {
   data() {
     return {
@@ -103,7 +102,7 @@ export default {
     submit() {
       console.log('submit!');
       console.log(localStorage.getItem("token"));
-      Axios.get(href+"/api/engineer/proServices/findByConditions?"+"costName="+this.cost.name+"&costSig="+this.cost.sig,{headers:{"token":localStorage.getItem("token")}}).
+      Axios.get(this.originhref+"/api/engineer/proServices/findByConditions?"+"costName="+this.cost.name+"&costSig="+this.cost.sig,{headers:{"token":localStorage.getItem("token")}}).
       then(res=>{
         this.proServiceData = res.data.data;
         console.log("查询数据返回"+res.data);
