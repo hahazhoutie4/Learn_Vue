@@ -11,6 +11,9 @@
       <el-form-item>
         <el-button type="primary" @click="submit">查询成本数据</el-button>
       </el-form-item>
+      <el-form-item>
+        <el-button type="info" @click="clear">清除</el-button>
+      </el-form-item>
     </el-form>
 
     <!-- 表格 -->
@@ -98,6 +101,11 @@ export default {
       Axios.get(this.originhref+"/api/engineer/materials/findByConditions?"+"costName="+this.cost.name+"&costSig="+this.cost.sig,{headers:{"token":localStorage.getItem("token")}}).then(res=>{
       this.materialData = res.data.data;
       })
+    },
+    clear(){
+      this.cost.name = '';
+      this.cost.sig='';
+      materialFindByPage(this,1,10);
     }
 
   },

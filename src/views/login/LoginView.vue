@@ -65,8 +65,6 @@ export default {
   methods: {
     onSubmit() {
       login(this,this.form.name,this.form.password);
-
-     // this.$router.push({ path: '/emp' })
     },
     onCancel() {
       this.form.name = '';

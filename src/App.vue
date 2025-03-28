@@ -4,8 +4,6 @@
   </div>
 </template>
 <script>
-import Axios  from 'axios';
-import qs from  'qs';
 export default {
   data(){
     return{
@@ -13,13 +11,6 @@ export default {
   },
   mounted() {
     console.log("App.vue mounted");
-    console.log(this.originhref);
-    Axios.post(this.originhref+"/api/login",qs.stringify({userName:"zhoutong",password:"jintian123"}),{headers:{
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }}).then(res=>{
-      let token = res.data.data;
-      localStorage.setItem("token",token);
-    })
   }
 }
 </script>

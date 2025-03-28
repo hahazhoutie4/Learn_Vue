@@ -11,6 +11,9 @@
       <el-form-item>
         <el-button type="primary" @click="submit">查询成本数据</el-button>
       </el-form-item>
+      <el-form-item>
+        <el-button type="info" @click="clear">清除</el-button>
+      </el-form-item>
     </el-form>
 
     <!-- 表格 -->
@@ -113,6 +116,11 @@ export default {
     handleCurrentChange(e){
       proServiceFindByPage(this,e,10);
       console.log(e);
+    },
+    clear(){
+      this.cost.name = '';
+      this.cost.sig='';
+      proServiceFindByPage(this,1,10);
     }
   },
   mounted() {
