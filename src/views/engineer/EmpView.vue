@@ -27,10 +27,19 @@
             <div class="grid-content bg-purple">
               <el-submenu index="1">
                 <template slot="title">
-                  <i class="el-icon-notebook-2"></i>文件服务</template>
+                  <i class="el-icon-notebook-2"></i>成本文件服务</template>
                 <el-menu-item index="2-1"><router-link to="/emp/fileUpload" style="text-decoration: none;color: inherit">上传成本数据</router-link></el-menu-item>
               </el-submenu>
+
           </div>
+            <div class="grid-content bg-purple">
+              <el-submenu index="3">
+                <template slot="title">
+                  <i class="el-icon-notebook-2"></i>批处理服务
+                </template>
+                <el-menu-item index="3-1"><router-link to="/emp/qrcode" style="text-decoration: none;color: inherit">批量生成二维码</router-link></el-menu-item>
+              </el-submenu>
+            </div>
           </el-menu>
           </el-col>
         </el-row>
@@ -50,9 +59,15 @@
             </el-submenu>
             <el-submenu index="2">
               <template slot="title">
-                <i class="el-icon-notebook-2"></i>上传模板文件
+                <i class="el-icon-notebook-2"></i>成本文件服务
               </template>
               <el-menu-item index="2-1"><router-link to="/emp/fileUpload" style="text-decoration: none;color: inherit">上传成本数据</router-link></el-menu-item>
+            </el-submenu>
+            <el-submenu index="3">
+              <template slot="title">
+                <i class="el-icon-notebook-2"></i>批处理服务
+              </template>
+              <el-menu-item index="3-1"><router-link to="/emp/qrcode" style="text-decoration: none;color: inherit">批量生成二维码</router-link></el-menu-item>
             </el-submenu>
           </el-menu>
         </el-aside>

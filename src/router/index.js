@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import LaborView from "@/views/engineer/LaborView.vue";
-import FileView from "@/views/engineer/FileView.vue";
-import MaterialView from "@/views/engineer/MaterialView.vue";
-import ProServiceView from "@/views/engineer/ProServiceView.vue";
+import LaborView from "@/views/engineer/Multi/LaborView.vue";
+import FileView from "@/views/engineer/Multi/FileView.vue";
+import MaterialView from "@/views/engineer/Multi/MaterialView.vue";
+import ProServiceView from "@/views/engineer/Multi/ProServiceView.vue";
 import LoginView from "@/views/login/LoginView.vue";
 import EmpView from "@/views/engineer/EmpView.vue";
+import QrcodeView from "@/views/engineer/Multi/QrcodeView.vue";
 Vue.use(VueRouter)
 
 const routes = [
@@ -37,6 +38,11 @@ const routes = [
         path: 'fileUpload',
         name: 'fileUpload',
         component: FileView
+      },
+      {
+        path: 'qrcode',
+        name: 'qrcode',
+        component: QrcodeView
       }
     ]
   },
