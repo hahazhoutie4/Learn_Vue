@@ -19,7 +19,7 @@
 </template>
 
 <script>
-// import axios from "axios";
+import axios from "axios";
 
 export default {
   name: 'QrcodeView',
@@ -28,7 +28,7 @@ export default {
       arr: 1,
       form:{
         value:[],
-        qrcode : "",
+        href : "",
       },
       google:[]
     }
@@ -43,29 +43,36 @@ export default {
       this.form.value.pop();
 
     },
-    generateCode(){
+    async generateCode(){
       console.log("generateCode");
       this.$refs.images.innerHTML=""; //先清除
+      const head = "data:img/png;base64,";
       for(let k in this.form.value){
-        this.google[k] = this.form.qrcode+this.form.value[k];
+        this.google[k] = this.form.href+this.form.value[k];
         const span = document.createElement('span');
         span.innerText = this.form.value[k];
        const img = document.createElement('img');
-       img.src = this.google[k];
-      //   axios.get(this.google[k],{async:false,headers:{"token":localStorage.getItem("token")}}).then(res=>{
-      //     img.src = res.data.data;
-      //   });
+     //  img.src = head+"iVBORw0KGgoAAAANSUhEUgAAASwAAAEsAQAAAABRBrPYAAABD0lEQVR42u3aOxKDIBCAYaw8BkfVo3qElFZueEO00CIsk8xP4YT4Ue24DxMjT9bLwGAwGAz2U2w3aVm3WY2Z/CWsCabH4k5W6w9Yt11tewOmxGKIarDKAZg+czeXsIUNZHLABrKcuNynbZbb/AbrwEoRj3G6rfWwDqxZ/pF50PfCvs/2FJiQvdwj42y6wFRZ/D5kqi0OGEecMmCqLARsPlL2Mj5O2yW/wfoyKfXb5GAt1yIO68hqB5vb2HjglLhgPVld57BNMDXWNLQpe8UJz8wC02NluMuXUDlg2iy/bsoNrdT3r7ABrC3isFFMPnIWTJPVH4OWMtxdRmxYV9YW8aaVsgLTY/wdAgaDwWB/w94RbVksI0KiBgAAAABJRU5ErkJggg==";
+      const res = await axios.get(this.google[k],{async:false,headers:{"token":localStorage.getItem("token")}});
+          if(res.data.code == 1){
+            img.src = head+res.data.data;
+            console.log(res.data.data);
+          }else{
+            this.$alert(res.data);
+          }
+      //
        span.appendChild(img);
        this.$refs.images.appendChild(span);
       }
     },
     clear(){
+      this.form.value = [];
       this.$refs.images.innerHTML="";
     }
   },
   mounted() {
-    this.form.qrcode = this.originhref+"/api/engineer/qrcode?content=";
-    console.log(this.form.qrcode);
+    this.form.href = this.originhref+"/api/engineer/qrcode?content=";
+    console.log(this.form.href);
   }
 }
 </script>

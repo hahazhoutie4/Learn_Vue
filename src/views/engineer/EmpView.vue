@@ -35,7 +35,7 @@
             <div class="grid-content bg-purple">
               <el-submenu index="3">
                 <template slot="title">
-                  <i class="el-icon-notebook-2"></i>批处理服务
+                  <i class="el-icon-notebook-2"></i>批处理工具
                 </template>
                 <el-menu-item index="3-1"><router-link to="/emp/qrcode" style="text-decoration: none;color: inherit">批量生成二维码</router-link></el-menu-item>
               </el-submenu>
@@ -65,7 +65,7 @@
             </el-submenu>
             <el-submenu index="3">
               <template slot="title">
-                <i class="el-icon-notebook-2"></i>批处理服务
+                <i class="el-icon-notebook-2"></i>批处理工具
               </template>
               <el-menu-item index="3-1"><router-link to="/emp/qrcode" style="text-decoration: none;color: inherit">批量生成二维码</router-link></el-menu-item>
             </el-submenu>
