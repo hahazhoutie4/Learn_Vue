@@ -6,7 +6,6 @@ export function login(vueObject , userName,password){
     Axios.post(Vue.prototype.originhref+"/api/login",qs.stringify({userName:userName,password:password}),{headers:{
             'Content-Type': 'application/x-www-form-urlencoded'
         }}).then(res=>{
-        vueObject.loading = false;
         let data  = res.data;
         if(data.code == 0){
             vueObject.$alert(data.data);
@@ -14,6 +13,10 @@ export function login(vueObject , userName,password){
             localStorage.setItem("token",data.data);
             vueObject.$router.push("/emp");
         }
+        vueObject.loading = false;
+    }).catch(error=>{
+        vueObject.$alert("服务器错误或无响应:"+error);
+        vueObject.loading = false;
     })
 }
 export function proServiceFindAll(vueObject){

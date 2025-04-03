@@ -10,10 +10,10 @@
   <div style="text-align: left">
     <el-button @click="incre" type="primary" size="small">增加行数</el-button>
     <el-button @click="decre" type="primary" size="small">减少行数</el-button>
-    <el-button @click="generateCode" type="primary" size="small">显示图片</el-button>
+    <el-button @click="generateCode" type="primary" size="small">生成二维码</el-button>
     <el-button @click="clear" type="primary" size="small">清除二维码</el-button>
   </div>
-    <div ref="images" style="text-align: left">
+    <div  ref="images" style="text-align: left">
     </div>
   </div>
 </template>
@@ -44,7 +44,8 @@ export default {
 
     },
     async generateCode(){
-      console.log("generateCode");
+      //根据提交内容生成二维码
+      console.log("generateCode loading");
       this.$refs.images.innerHTML=""; //先清除
       const head = "data:img/png;base64,";
       for(let k in this.form.value){
@@ -52,7 +53,6 @@ export default {
         const span = document.createElement('span');
         span.innerText = this.form.value[k];
        const img = document.createElement('img');
-     //  img.src = head+"iVBORw0KGgoAAAANSUhEUgAAASwAAAEsAQAAAABRBrPYAAABD0lEQVR42u3aOxKDIBCAYaw8BkfVo3qElFZueEO00CIsk8xP4YT4Ue24DxMjT9bLwGAwGAz2U2w3aVm3WY2Z/CWsCabH4k5W6w9Yt11tewOmxGKIarDKAZg+czeXsIUNZHLABrKcuNynbZbb/AbrwEoRj3G6rfWwDqxZ/pF50PfCvs/2FJiQvdwj42y6wFRZ/D5kqi0OGEecMmCqLARsPlL2Mj5O2yW/wfoyKfXb5GAt1yIO68hqB5vb2HjglLhgPVld57BNMDXWNLQpe8UJz8wC02NluMuXUDlg2iy/bsoNrdT3r7ABrC3isFFMPnIWTJPVH4OWMtxdRmxYV9YW8aaVsgLTY/wdAgaDwWB/w94RbVksI0KiBgAAAABJRU5ErkJggg==";
       const res = await axios.get(this.google[k],{async:false,headers:{"token":localStorage.getItem("token")}});
           if(res.data.code == 1){
             img.src = head+res.data.data;
@@ -64,6 +64,7 @@ export default {
        span.appendChild(img);
        this.$refs.images.appendChild(span);
       }
+      console.log("generateCode loading");
     },
     clear(){
       this.form.value = [];
